@@ -87,29 +87,60 @@ $(document).ready(function(){
 
 // })
 
-    var x = $('.game').width()/2;
-    var y=0;
+    // var x = $('.game').width()/2;
+    // var y=0;
     
-    $('.ship').css("bottom",y)
-    $('.ship').css("right",x)
+    // $('.ship').css("bottom",y)
+    // $('.ship').css("right",x)
 
-    $('.top').on('click',function(){
-        y+=10;
-        $('.ship').css("bottom",y)
-    })
+    // $('.top').on('click',function(){
+    //     y+=10;
+    //     $('.ship').css("bottom",y)
+    // })
 
-    $('.bottom').on('click',function(){
-        y-=10;
-        $('.ship').css("bottom",y)
-    })
+    // $('.bottom').on('click',function(){
+    //     y-=10;
+    //     $('.ship').css("bottom",y)
+    // })
 
-    $('.right').on('click',function(){
-        x-=10;
-        $('.ship').css("right",x)
-    })
+    // $('.right').on('click',function(){
+    //     x-=10;
+    //     $('.ship').css("right",x)
+    // })
 
-    $('.left').on('click',function(){
-        x+=10;
-        $('.ship').css("right",x)
+    // $('.left').on('click',function(){
+    //     x+=10;
+    //     $('.ship').css("right",x)
+    // })
+
+    $('.target').keyup(function(){       
+       $('.block').each(function(){
+        var bool = false;
+        var text = $('.target').val();
+        var here = $(this).text();
+        for(var i=0;i<here.length-text.length+1;i++){
+            var temp = true;
+            for(var j=0;j<text.length;j++){
+                if(here[i+j]!=text[j]){
+                    temp=false;
+                }
+            }
+            if(temp){
+                bool = true;
+            }
+        }
+        if(bool){
+            $(this).removeClass('invisible');
+        }
+        else{
+            $(this).addClass('invisible');
+        }
+        })
+
+        if($('.target').val()==''){
+            $('.block').each(function(){
+                $(this).removeClass('invisible');
+            })
+        }
     })
 });
